@@ -4,7 +4,7 @@ Swiss army utility kit
 ## Usage
 
 ```bash
-$ npm install --save-dev github:AFwcxx/ts-tools
+$ npm install github:AFwcxx/ts-tools
 ```
 
 Declare in a file:

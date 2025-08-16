@@ -26,9 +26,7 @@
     "axios": "^1.11.0",
     "bignumber.js": "^9.3.1",
     "moment": "^2.30.1",
-    "mongodb": "^6.18.0"
-  },
-  "devDependencies": {
+    "mongodb": "^6.18.0",
     "typescript": "^5.9.2"
   }
 }
