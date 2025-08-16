@@ -1,16 +1,30 @@
-# ts-tools
-Swiss army utility kit
+# ts‑tools
 
-## Usage
+A **Swiss‑army utility toolkit** for TypeScript projects - small, versatile, and indispensable for everyday coding tasks.
+
+---
+
+##  Installation
+
+Install straight from GitHub as a development dependency:
 
 ```bash
-$ npm install github:AFwcxx/ts-tools
+npm install github:AFwcxx/ts-tools
+
+# Update to newer version
+npm upgrade github:AFwcxx/ts-tools
 ```
 
-Declare in a file:
+---
 
-```javascript
+##  Usage
+
+```ts
+// Static
 import { Tools } from "ts-tools";
-```
 
+// Example usage:
+const result = Tools.do_something();
+console.log(result);
+```
 
