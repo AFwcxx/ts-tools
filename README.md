@@ -12,7 +12,7 @@ Install straight from GitHub as a development dependency:
 npm install github:AFwcxx/ts-tools
 
 # Update to newer version
-npm upgrade github:AFwcxx/ts-tools
+npm upgrade ts-tools
 ```
 
 ---
