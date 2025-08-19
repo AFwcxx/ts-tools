@@ -13,6 +13,10 @@ export declare class Tools {
     static deep_clone(obj: any): any;
     static is_decimal_string(value: string): value is DecimalString;
     static get_date_mysql_format(date: Date): string;
+    static get_date_before(date: Date | string | number, options: {
+        days?: number;
+        seconds?: number;
+    }): Date;
     static get_unsafe_random_number(x: number, y: number): number;
     static get_unsafe_random_string(length?: number): string;
 }

@@ -182,6 +182,20 @@ class Tools {
         const day = String(date.getDate()).padStart(2, '0');
         return `${year}-${month}-${day}`;
     }
+    static get_date_before(date, options) {
+        const base = new Date(date);
+        if (isNaN(base.getTime())) {
+            throw new Error("Invalid date provided");
+        }
+        let time = base.getTime();
+        if (options.days) {
+            time -= options.days * 24 * 60 * 60 * 1000;
+        }
+        if (options.seconds) {
+            time -= options.seconds * 1000;
+        }
+        return new Date(time);
+    }
     static get_unsafe_random_number(x, y) {
         if (x > y) {
             [x, y] = [y, x];
