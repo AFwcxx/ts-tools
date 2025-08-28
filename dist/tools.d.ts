@@ -19,4 +19,6 @@ export declare class Tools {
     }): Date;
     static get_unsafe_random_number(x: number, y: number): number;
     static get_unsafe_random_string(length?: number): string;
+    static parse_utc_date(str: string): Date;
+    static get_decimal_number(integer: string, decimal: string): number;
 }

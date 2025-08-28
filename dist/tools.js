@@ -214,6 +214,30 @@ class Tools {
         }
         return result;
     }
+    static parse_utc_date(str) {
+        const [datePart, timePart] = str.split(" ");
+        const [year, month, day] = datePart.split("-").map(Number);
+        const [hour, minute, second] = timePart.split(":").map(Number);
+        return new Date(Date.UTC(year, month - 1, day, hour, minute, second));
+    }
+    static get_decimal_number(integer, decimal) {
+        const intVal = BigInt(integer);
+        let [whole, frac = ""] = decimal.split(".");
+        frac = frac.replace(/0+$/, "");
+        const decimalInt = BigInt(whole + frac);
+        const decimalScale = BigInt(10) ** BigInt(frac.length);
+        let d = 0;
+        let left = intVal * decimalScale;
+        let right = decimalInt;
+        while (right < left) {
+            right *= 10n;
+            d++;
+        }
+        if (right === left) {
+            return d;
+        }
+        throw new Error("Could not determine decimals");
+    }
 }
 exports.Tools = Tools;
 ;
