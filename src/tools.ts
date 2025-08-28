@@ -263,4 +263,49 @@ export class Tools {
 
     return result;
   }
+  static parse_utc_date(str: string): Date {
+    // str is something like a MYSQL timestamp
+    // eg. "2025-05-25 15:05:11"
+    const [datePart, timePart] = str.split(" ");
+    const [year, month, day] = datePart.split("-").map(Number);
+    const [hour, minute, second] = timePart.split(":").map(Number);
+
+    return new Date(Date.UTC(year, month - 1, day, hour, minute, second));
+  }
+  static get_decimal_number(integer: string, decimal: string): number {
+    // let say the integer value is 41200
+    // and the decimal value is 0.412
+    // the this function will return 5 decimal places
+
+    const intVal = BigInt(integer);
+
+    // Split into integer and fractional parts
+    let [whole, frac = ""] = decimal.split(".");
+
+    // Remove trailing zeros from fractional part
+    frac = frac.replace(/0+$/, "");
+
+    // Build decimal as integer without dot
+    const decimalInt = BigInt(whole + frac);
+    const decimalScale = BigInt(10) ** BigInt(frac.length);
+
+    // We want: intVal == (decimalInt * 10^d) / decimalScale
+    // Rearranged: intVal * decimalScale == decimalInt * 10^d
+
+    let d = 0;
+    let left = intVal * decimalScale;
+    let right = decimalInt;
+
+    // Keep multiplying right by 10 until they match
+    while (right < left) {
+      right *= 10n;
+      d++;
+    }
+
+    if (right === left) {
+      return d;
+    }
+
+    throw new Error("Could not determine decimals");
+  }
 };
