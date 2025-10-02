@@ -34,7 +34,12 @@ class Tools {
                     resolve(error.response.data);
                 }
                 else {
-                    reject(error.message ?? error);
+                    if (error.response.data && error.response.data.error) {
+                        reject(error.response.data.error.message ?? error.response.data.error);
+                    }
+                    else {
+                        reject(error.message ?? error);
+                    }
                 }
             });
         });
@@ -61,7 +66,12 @@ class Tools {
                     resolve(error.response.data);
                 }
                 else {
-                    reject(error.message ?? error);
+                    if (error.response.data && error.response.data.error) {
+                        reject(error.response.data.error.message ?? error.response.data.error);
+                    }
+                    else {
+                        reject(error.message ?? error);
+                    }
                 }
             });
         });
