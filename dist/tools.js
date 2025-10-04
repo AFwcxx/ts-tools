@@ -34,7 +34,7 @@ class Tools {
                     resolve(error.response.data);
                 }
                 else {
-                    if (error.response.data && error.response.data.error) {
+                    if (error.response && error.response.data && error.response.data.error) {
                         reject(error.response.data.error.message ?? error.response.data.error);
                     }
                     else {
@@ -66,7 +66,7 @@ class Tools {
                     resolve(error.response.data);
                 }
                 else {
-                    if (error.response.data && error.response.data.error) {
+                    if (error.response && error.response.data && error.response.data.error) {
                         reject(error.response.data.error.message ?? error.response.data.error);
                     }
                     else {
