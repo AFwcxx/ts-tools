@@ -2,6 +2,7 @@ import { HttpRequestData, DecimalString } from "./tools.i";
 export declare class Tools {
     static get<T>(params: HttpRequestData): Promise<T>;
     static post<T>(params: HttpRequestData): Promise<T>;
+    static put<T>(params: HttpRequestData): Promise<T>;
     static to_hex(input: string): string;
     static arithmetic(operation: "+" | "-" | "x" | "/", a: string, b: string, decimal?: number): string;
     static to_int(value: string, decimal: number, toBigInt?: boolean): string | bigint;

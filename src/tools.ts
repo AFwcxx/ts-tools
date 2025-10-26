@@ -84,6 +84,42 @@ export class Tools {
       });
     })
   }
+  static put <T> (params: HttpRequestData): Promise<T> {
+    const { url, data, headers } = params;
+
+    if (!url) {
+      throw new Error("Insufficient parameter received.");
+    }
+
+    const options: any = {};
+
+    if (headers && JSON.stringify(headers) !== '{}') {
+      options.headers = headers;
+    }
+
+    return new Promise((resolve, reject) => {
+      axios.put(url, data, options)
+      .then(function (response) {
+        resolve(response.data);
+      })
+      .catch(function (error) {
+        if (
+          error.response
+          && typeof error.response.data === "object"
+          && error.response.data.success !== undefined
+          && error.response.data.message !== undefined
+        ) {
+          resolve(error.response.data);
+        } else {
+          if (error.response && error.response.data && error.response.data.error) {
+            reject(error.response.data.error.message ?? error.response.data.error);
+          } else {
+            reject(error.message ?? error);
+          }
+        }
+      });
+    })
+  }
   static to_hex (input: string): string {
     if (!isNaN(Number(input)) && isFinite(Number(input))) {
       const a = new BigNumber(input);

@@ -76,6 +76,38 @@ class Tools {
             });
         });
     }
+    static put(params) {
+        const { url, data, headers } = params;
+        if (!url) {
+            throw new Error("Insufficient parameter received.");
+        }
+        const options = {};
+        if (headers && JSON.stringify(headers) !== '{}') {
+            options.headers = headers;
+        }
+        return new Promise((resolve, reject) => {
+            axios_1.default.put(url, data, options)
+                .then(function (response) {
+                resolve(response.data);
+            })
+                .catch(function (error) {
+                if (error.response
+                    && typeof error.response.data === "object"
+                    && error.response.data.success !== undefined
+                    && error.response.data.message !== undefined) {
+                    resolve(error.response.data);
+                }
+                else {
+                    if (error.response && error.response.data && error.response.data.error) {
+                        reject(error.response.data.error.message ?? error.response.data.error);
+                    }
+                    else {
+                        reject(error.message ?? error);
+                    }
+                }
+            });
+        });
+    }
     static to_hex(input) {
         if (!isNaN(Number(input)) && isFinite(Number(input))) {
             const a = new bignumber_js_1.default(input);
