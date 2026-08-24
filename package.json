@@ -1,6 +1,6 @@
 {
   "name": "ts-tools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Swiss army utility kit",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
